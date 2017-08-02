@@ -7,8 +7,7 @@ def parse():
     parser = argparse.ArgumentParser(usage=__doc__)
     parser.add_argument('username', help="JIRA Username", type=str)
     parser.add_argument('password', help="JIRA Password.", type=str)
-    parser.add_argument('project', help="Query project", type=str)
-    parser.add_argument('--status', help="Only issues with given status")
+    parser.add_argument('query', help="JQL Query to execute", type=str)
     return parser.parse_args()
 
 
@@ -16,11 +15,11 @@ def main():
     args = parse()
     jira = connection(args.username, args.password)
 
-    query = "project={} and assignee = {} and status != \"closed\" ".format(args.project, args.username)
-    all_proj_issues_but_mine = jira.search_issues(query)
+    all_proj_issues_but_mine = jira.search_issues(args.query)
 
     for issue in all_proj_issues_but_mine:
         print("Ticket: {}".format(issue.key))
+        print("Status: {}".format(issue.fields.status))
         print("Summary:{}".format(issue.fields.summary))
 
 if __name__ == '__main__':
