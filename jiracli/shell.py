@@ -38,3 +38,7 @@ class Jira(cmd.Cmd):
     def do_exit(arg):
         'Exit JIRA interactive shell. subsequent queries will use this project by default'
         return True
+
+    def emptyline(self):
+        """Do nothing if we hit an empty line"""
+        pass

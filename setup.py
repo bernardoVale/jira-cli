@@ -19,6 +19,12 @@ def find_version(*file_paths):
     raise RuntimeError("Unable to find version string.")
 
 
+def dependencies():
+    deps = []
+    for line in open('requirements.txt').readlines():
+        deps.append(line.strip('\n'))
+    return deps
+
 
 setup(
     name="JiraCLI",
@@ -29,4 +35,5 @@ setup(
             'jira=jiracli:main',
         ],
     },
+    install_requires=dependencies()
 )
