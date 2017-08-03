@@ -1,11 +1,11 @@
 from . import auth
 from . import config
+from .api import API
 from . import shell
 
 __version__ = '0.1'
 
 
 def main():
-    cfg = config.parse()
-    api = auth.basic(cfg.server, username=cfg.username, password=cfg.password, unsafe=cfg.unsafe)
-    shell.Jira(cfg, api).cmdloop()
+    _api = API(config.parse())
+    shell.Jira(_api).cmdloop()
