@@ -1,0 +1,10 @@
+# Jira Username
+username: bvale
+# Jira password
+password: secret
+# Default JIRA project
+project: TAHw
+# JIRA Server URL
+server: https://myjira.example.com
+# Accepts insecure https certificates
+unsafe: False
